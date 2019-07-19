@@ -87,7 +87,7 @@ class ResourceObject {
     });
 
     if (incomplete.isNotEmpty) {
-      throw StateError('Can not convert to resource'
+      print('Can not convert to resource'
           ' due to incomplete relationships data: ${incomplete.keys}');
     }
 
