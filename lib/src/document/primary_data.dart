@@ -9,11 +9,24 @@ import 'package:json_api/src/document/resource_object.dart';
 abstract class PrimaryData {
   /// In Compound document this member contains the included resources
   final List<ResourceObject> included;
+  Map<String, int> resourcesInArrayPosition;
 
   final Link self;
 
-  PrimaryData({this.self, Iterable<ResourceObject> included})
-      : this.included = (included == null) ? null : List.from(included);
+  PrimaryData(
+      {this.self,
+      Iterable<ResourceObject> included,
+      this.resourcesInArrayPosition})
+      : this.included = (included == null) ? null : List.from(included) {
+    this.resourcesInArrayPosition = Map<String, int>();
+    if (included != null && included.isNotEmpty) {
+      int position = 0;
+      included.forEach((resource) {
+        resourcesInArrayPosition[resource.type + resource.id] = position;
+        position++;
+      });
+    }
+  }
 
   /// The top-level `links` object. May be empty.
   Map<String, Link> get links => {
