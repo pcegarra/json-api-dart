@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:http/http.dart';
 import 'package:json_api/json_api.dart';
 import 'package:json_api/server.dart';
@@ -10,19 +11,18 @@ import '../../example/cars_server.dart';
 
 void main() async {
   HttpServer server;
-  Client httpClient;
+  Dio httpClient;
   JsonApiClient client;
   final port = 8081;
   final url = PathBasedUrlDesign(Uri.parse('http://localhost:$port'));
 
   setUp(() async {
-    httpClient = Client();
+    httpClient = Dio();
     client = JsonApiClient(httpClient);
     server = await createServer(InternetAddress.loopbackIPv4, port);
   });
 
   tearDown(() async {
-    httpClient.close();
     await server.close();
   });
 

@@ -1,12 +1,11 @@
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:json_api/json_api.dart';
 
 void main() async {
-  final httpClient = Client();
+  final httpClient = Dio();
   final jsonApiClient = JsonApiClient(httpClient);
   final companiesUri = Uri.parse('http://localhost:8080/companies');
   final response = await jsonApiClient.fetchCollection(companiesUri);
-  httpClient.close();
   print('Status: ${response.status}');
   print('Headers: ${response.headers}');
 

@@ -5,7 +5,7 @@ import 'package:json_api/src/document/resource_data.dart';
 import 'package:json_api/src/nullable.dart';
 
 /// A response returned by JSON:API client
-class Response<Data extends PrimaryData> {
+class CustomResponse<Data extends PrimaryData> {
   /// HTTP status code
   final int status;
 
@@ -18,9 +18,9 @@ class Response<Data extends PrimaryData> {
   final Document<ResourceData> asyncDocument;
 
   /// Headers returned by the server.
-  final Map<String, String> headers;
+  final Map<String, dynamic> headers;
 
-  Response(this.status, this.headers, {this.document, this.asyncDocument});
+  CustomResponse(this.status, this.headers, {this.document, this.asyncDocument});
 
   /// Primary Data from the document (if any)
   Data get data => document.data;
