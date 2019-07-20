@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 import 'package:json_api/src/client/custom_response.dart';
 import 'package:json_api/src/client/simple_document_builder.dart';
 import 'package:json_api/src/client/status_code.dart';
