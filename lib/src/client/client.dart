@@ -147,19 +147,9 @@ class JsonApiClient {
       Future<Response> res, D decodePrimaryData(Object _)) async {
     final response = await httpClient.resolve(res);
 
-    dynamic data;
-    int statusCode;
-    DioHttpHeaders headers;
-    if (response.data is Map) {
-      data = response.data;
-      statusCode = response.statusCode;
-      headers = response.headers;
-    }
-    else{
-        statusCode = response.data.response.statusCode;
-        headers = response.data.response.headers;
-        data = response.data.response.data;
-    }
+    dynamic data = response.data;
+    int statusCode = response.statusCode;
+    DioHttpHeaders headers = response.headers;
 
     return CustomResponse(statusCode, headers,
         document: Document.decodeJson(
