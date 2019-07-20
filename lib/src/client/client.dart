@@ -150,16 +150,16 @@ class JsonApiClient {
     dynamic data;
     int statusCode;
     DioHttpHeaders headers;
-    if (response.data is DioError) {
-      DioError error = response.data;
-      statusCode = error.response.statusCode;
-      headers = error.response.headers;
-      data = error.response.data;
-    }
     if (response.data is Map) {
       data = response.data;
       statusCode = response.statusCode;
       headers = response.headers;
+    }
+    else{
+        DioError error = response.data;
+        statusCode = error.response.statusCode;
+        headers = error.response.headers;
+        data = error.response.data;
     }
 
     return CustomResponse(statusCode, headers,
