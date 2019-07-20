@@ -3,6 +3,7 @@ import 'package:json_api/src/document/document.dart';
 import 'package:json_api/src/document/primary_data.dart';
 import 'package:json_api/src/document/resource_data.dart';
 import 'package:json_api/src/nullable.dart';
+import 'package:dio/dio.dart';
 
 /// A response returned by JSON:API client
 class CustomResponse<Data extends PrimaryData> {
@@ -18,7 +19,7 @@ class CustomResponse<Data extends PrimaryData> {
   final Document<ResourceData> asyncDocument;
 
   /// Headers returned by the server.
-  final Map<String, dynamic> headers;
+  final DioHttpHeaders headers;
 
   CustomResponse(this.status, this.headers, {this.document, this.asyncDocument});
 
@@ -48,11 +49,11 @@ class CustomResponse<Data extends PrimaryData> {
 
   /// The `Location` HTTP header value. For `201 Created` responses this property
   /// contains the location of a newly created resource.
-  Uri get location => nullable(Uri.parse)(headers['location']);
+  Uri get location => nullable(Uri.parse)("xd");
 
   /// The `Content-Location` HTTP header value. For `202 Accepted` responses
   /// this property contains the location of the Job Queue resource.
   ///
   /// More details: https://jsonapi.org/recommendations/#asynchronous-processing
-  Uri get contentLocation => nullable(Uri.parse)(headers['content-location']);
+  Uri get contentLocation => nullable(Uri.parse)("lol");
 }
