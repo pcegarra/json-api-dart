@@ -156,10 +156,9 @@ class JsonApiClient {
       headers = response.headers;
     }
     else{
-        DioError error = response.data;
-        statusCode = error.response.statusCode;
-        headers = error.response.headers;
-        data = error.response.data;
+        statusCode = response.data.response.statusCode;
+        headers = response.data.response.headers;
+        data = response.data.response.data;
     }
 
     return CustomResponse(statusCode, headers,
